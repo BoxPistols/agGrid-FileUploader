@@ -9,20 +9,20 @@ function App() {
   return (
     <div className="App">
       <Container sx={{ maxWidth: "1280px" }}>
-        <Box sx={{ mb: 4 }}>
-          <Typography variant="h5" gutterBottom>
-            CSVファイルアップロード
-          </Typography>
-          <CsvUploader />
-        </Box>
-
-        <Divider mt={1} />
-
         <Box sx={{ mb: 4, mt: 3 }}>
           <Typography variant="h5" gutterBottom>
             Drag&Drop CSVファイルアップロード
           </Typography>
           <DragAndDropUploader />
+        </Box>
+
+        <Divider mt={1} />
+
+        <Box sx={{ mb: 4, mt: 4 }}>
+          <Typography variant="h5" gutterBottom>
+            CSVファイルアップロード
+          </Typography>
+          <CsvUploader />
         </Box>
 
         <Divider />
