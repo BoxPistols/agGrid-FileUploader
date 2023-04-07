@@ -2,6 +2,8 @@ import React, { useRef, useState, ChangeEvent } from "react";
 import { Box, Input, Button, Typography } from "@mui/material";
 import { AgGridReact } from "ag-grid-react";
 import { ColDef } from "ag-grid-community";
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-balham.css";
 
 const DragAndDropUploader = () => {
   const [, setFile] = useState<File | null>(null);
@@ -75,10 +77,10 @@ const DragAndDropUploader = () => {
           onDrop={handleDrop}
           style={{
             border: "2px dashed #ccc",
-            padding: 24,
+            padding: 20,
             textAlign: "center",
-            width: 200,
-            height: 80,
+            width: "auto",
+            height: 60,
             marginBottom: 16,
           }}
         >
@@ -98,11 +100,13 @@ const DragAndDropUploader = () => {
             ここにファイルをドロップしてください
           </Button>
         </div>
-        <Button onClick={handleReset} color="secondary" variant="contained">
-          リセット
-        </Button>
+        {rowData.length > 0 && (
+          <Button onClick={handleReset} color="secondary" variant="outlined">
+            リセット
+          </Button>
+        )}
       </Box>
-      <div className="ag-theme-alpine" style={{ height: 400, width: "100%" }}>
+      <div className="ag-theme-balham" style={{ height: 200, width: "100%" }}>
         <AgGridReact columnDefs={columnDefs} rowData={rowData} />
       </div>
     </div>
