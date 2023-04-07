@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom";
 
-import { Container, Box, Divider } from "@mui/material";
+import { Container, Box, Divider, Typography } from "@mui/material";
 import CsvUploader from "../src/table/fileUpload/CsvUploader";
 import DragAndDropUploader from "../src/table/fileUpload/DragAndDropUploader";
 import Table from "../src/table/Table";
@@ -10,16 +10,27 @@ function App() {
     <div className="App">
       <Container sx={{ maxWidth: "1280px" }}>
         <Box sx={{ mb: 4 }}>
+          <Typography variant="h5" gutterBottom>
+            CSVファイルアップロード
+          </Typography>
           <CsvUploader />
         </Box>
 
-        <Box sx={{ mb: 4 }}>
+        <Divider mt={1} />
+
+        <Box sx={{ mb: 4, mt: 3 }}>
+          <Typography variant="h5" gutterBottom>
+            Drag&Drop CSVファイルアップロード
+          </Typography>
           <DragAndDropUploader />
         </Box>
 
         <Divider />
 
-        <Box sx={{ mt: 3 }}>
+        <Box sx={{ mt: 4 }}>
+          <Typography variant="h5" gutterBottom>
+            タイトル一致検索
+          </Typography>
           <Table />
         </Box>
       </Container>

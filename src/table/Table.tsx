@@ -57,7 +57,7 @@ const Table: React.FC<IProps> = () => {
           </span>
 
           <div
-            style={{ height: "1000px", width: "100%" }}
+            style={{ height: "400px", width: "100%" }}
             className="ag-theme-balham"
           >
             <AgGridReact

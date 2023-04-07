@@ -1,11 +1,10 @@
 import React, { useRef, useState, ChangeEvent } from "react";
-import { Input, Button } from "@mui/material";
+import { Box, Input, Button, Typography } from "@mui/material";
 import { AgGridReact } from "ag-grid-react";
 import { ColDef } from "ag-grid-community";
 
 const DragAndDropUploader = () => {
-  const [file, setFile] = useState<File | null>(null);
-
+  const [, setFile] = useState<File | null>(null);
   const [columnDefs, setColumnDefs] = useState<ColDef[]>([]);
   const [rowData, setRowData] = useState<{ [key: string]: string }[]>([]);
 
@@ -33,9 +32,7 @@ const DragAndDropUploader = () => {
     return { headers: parsedHeaders, data: parsedRows };
   };
 
-  const handleUpload = () => {
-    if (!file) return;
-
+  const handleUpload = (uploadedFile: File) => {
     const reader = new FileReader();
     reader.onload = async () => {
       const csvData = reader.result as string;
@@ -45,7 +42,13 @@ const DragAndDropUploader = () => {
       );
       setRowData(data);
     };
-    reader.readAsText(file);
+    reader.readAsText(uploadedFile);
+  };
+
+  const handleReset = () => {
+    setFile(null);
+    setColumnDefs([]);
+    setRowData([]);
   };
 
   const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
@@ -59,43 +62,46 @@ const DragAndDropUploader = () => {
       const file = files[0];
       if (file.type === "text/csv") {
         setFile(file);
+        handleUpload(file);
       }
     }
   };
 
   return (
     <div>
-      <div
-        onDragOver={handleDragOver}
-        onDrop={handleDrop}
-        style={{
-          border: "2px dashed #ccc",
-          padding: 24,
-          textAlign: "center",
-          width: 300,
-          height: 200,
-          marginBottom: 16,
-        }}
-      >
-        <p>CSVファイルをここにドロップしてください</p>
-        <Input
-          ref={fileInputRef}
-          type="file"
-          inputProps={{ accept: ".csv" }}
-          onChange={handleFileChange}
-          style={{ display: "none" }}
-        />
-        <Button
-          onClick={() => fileInputRef.current?.click()}
-          variant="contained"
-          color="primary"
+      <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+        <div
+          onDragOver={handleDragOver}
+          onDrop={handleDrop}
+          style={{
+            border: "2px dashed #ccc",
+            padding: 24,
+            textAlign: "center",
+            width: 200,
+            height: 80,
+            marginBottom: 16,
+          }}
         >
-          ファイルを選択
+          <Typography sx={{ color: "dimgray" }}>CSVファイル</Typography>
+          <Input
+            ref={fileInputRef}
+            type="file"
+            inputProps={{ accept: ".csv" }}
+            onChange={handleFileChange}
+            style={{ display: "none" }}
+          />
+          <Button
+            onClick={() => fileInputRef.current?.click()}
+            variant="text"
+            color="primary"
+          >
+            ここにファイルをドロップしてください
+          </Button>
+        </div>
+        <Button onClick={handleReset} color="secondary" variant="contained">
+          リセット
         </Button>
-      </div>
-      <Button onClick={handleUpload} disabled={!file}>
-        アップロード
-      </Button>
+      </Box>
       <div className="ag-theme-alpine" style={{ height: 400, width: "100%" }}>
         <AgGridReact columnDefs={columnDefs} rowData={rowData} />
       </div>

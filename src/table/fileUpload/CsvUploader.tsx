@@ -56,7 +56,7 @@ const CsvUploader = () => {
         アップロード
       </Button>
       <div
-        style={{ height: "400px", width: "100%" }}
+        style={{ height: "200px", width: "100%" }}
         className="ag-theme-balham"
       >
         <AgGridReact columnDefs={columnDefs} rowData={rowData} />
