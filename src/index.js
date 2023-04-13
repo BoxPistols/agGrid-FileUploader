@@ -5,6 +5,7 @@ import CsvUploader from "../src/table/fileUpload/CsvUploader";
 import DragAndDropUploader from "../src/table/fileUpload/DragAndDropUploader";
 import DragTable from "../src/table/fileUpload/DragTable";
 import Table from "../src/table/Table";
+import TextFieldUpload from "./table/fileUpload/TextFieldUpload";
 
 function App() {
   return (
@@ -19,6 +20,15 @@ function App() {
 
         <Divider mt={1} />
 
+        <Box sx={{ mb: 4, mt: 4 }}>
+          <Typography variant="h5" gutterBottom>
+            TextFieldUpload
+          </Typography>
+          <TextFieldUpload />
+        </Box>
+
+        <Divider mt={1} />
+
         <Box sx={{ mb: 4, mt: 3 }}>
           <Typography variant="h5" gutterBottom>
             Tableダイレクト Drag&Drop CSVファイルアップロード
@@ -26,11 +36,11 @@ function App() {
           <DragTable />
         </Box>
 
-        <Divider mt={1} />
+        <Divider />
 
         <Box sx={{ mb: 4, mt: 4 }}>
           <Typography variant="h5" gutterBottom>
-            CSVファイルアップロード
+            ファイル選択CSVファイルアップロード
           </Typography>
           <CsvUploader />
         </Box>
