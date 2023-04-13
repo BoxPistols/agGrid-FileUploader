@@ -37,7 +37,7 @@ const TextFieldUpload = () => {
   };
 
   return (
-    <Box sx={{ height: "100vh", display: "flex", flexDirection: "column" }}>
+    <Box sx={{ display: "flex", flexDirection: "column" }}>
       {" "}
       <TextField
         label="API URL"
